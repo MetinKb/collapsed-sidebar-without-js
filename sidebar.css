@@ -1,0 +1,242 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    border: none;
+    outline: none;
+    text-decoration: none;
+    box-sizing: border-box;
+    white-space: nowrap;
+    color: #fff;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
+}
+
+html,
+body {
+    height: 100%;
+    padding: .6rem;
+}
+
+aside {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: 19rem;
+    height: 100%;
+    background-color: #111;
+    border-radius: 1rem;
+    padding: 1rem;
+    transition: .5s width;
+
+    input[name="collapse"] {
+        display: none;
+    }
+
+    >label {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 1.5rem;
+        height: 1.5rem;
+        border-radius: 50%;
+        background-color: rgb(76, 171, 255);
+        top: 2.5rem;
+        left: 100%;
+        translate: -50%;
+
+        svg {
+            rotate: 180deg;
+            transition: .5s rotate;
+        }
+    }
+
+    img {
+        width: 2.25rem;
+        height: 2.25rem;
+        border-radius: 50%;
+    }
+
+    header {
+        display: flex;
+        align-items: center;
+        padding: 1rem 0;
+        gap: 1rem;
+        font-weight: 600;
+
+        h1 {
+            font-size: 1rem;
+            letter-spacing: 1px;
+        }
+    }
+
+    footer {
+        display: flex;
+        align-items: center;
+        gap: .5rem;
+        margin-top: auto;
+
+        button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: auto;
+            width: 2.5rem;
+            height: 2.5rem;
+            background-color: transparent;
+
+            svg {
+                width: 2.25rem;
+                height: 2.25rem;
+            }
+        }
+
+        h2 {
+            font-size: 1rem;
+        }
+
+        p {
+            font-size: .75rem;
+            color: rgba(255, 255, 255, .8);
+        }
+    }
+
+    .hidden {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    form {
+        position: relative;
+
+        label {
+            position: absolute;
+            width: 2rem;
+            height: 2rem;
+            top: 0;
+            left: 1rem;
+            z-index: 1;
+            display: none;
+        }
+
+        div {
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 2rem;
+            height: 2rem;
+            top: 0;
+            left: 0;
+        }
+
+        input {
+            width: 100%;
+            height: 2rem;
+            border-radius: .3rem;
+            padding: 0 1rem 0 2.5rem;
+            background-color: rgb(255, 255, 255, .2);
+        }
+    }
+
+    nav {
+        display: flex;
+        flex-direction: column;
+        gap: .3rem;
+        margin-top: .5rem;
+
+        a {
+            display: flex;
+            align-items: center;
+            height: 2.5rem;
+            border-radius: .25rem;
+
+            &:where(:hover, .active) {
+                background-color: rgba(255, 255, 255, .1);
+            }
+
+            span {
+                position: relative;
+                display: flex;
+                align-items: center;
+                flex-shrink: 0;
+                width: 2.5em;
+                height: 2.5rem;
+                justify-content: center;
+
+                &::before {
+                    content: attr(title);
+                    position: absolute;
+                    top: 50%;
+                    left: 60%;
+                    translate: 2.5rem -50%;
+                    background-color: #111;
+                    padding: .25rem .5rem;
+                    font-size: .75rem;
+                    border-radius: .25rem;
+                    opacity: 0;
+                    visibility: hidden;
+                    transition: .3s all;
+                }
+
+                &::after {
+                    content: "";
+                    position: absolute;
+                    top: 50%;
+                    left: 60%;
+                    translate: 2rem -50%;
+                    border: .25rem solid transparent;
+                    border-right-color: #111;
+                    opacity: 0;
+                    visibility: hidden;
+                    transition: .3s all;
+                }
+            }
+        }
+    }
+
+    &:has(input[name="collapse"]:checked) {
+        width: 4.5rem;
+
+        label svg {
+            rotate: 0deg;
+        }
+
+        form input {
+            padding: 0;
+        }
+
+        .hidden {
+            opacity: 0;
+            visibility: hidden;
+            transition: .3s all;
+        }
+
+        nav a {
+            width: 2.5rem;
+
+            span:hover::before,
+            span:hover:after {
+                opacity: 1;
+                visibility: visible;
+                left: 75%;
+            }
+        }
+
+        form {
+            width: 2.5rem;
+
+            label {
+                display: block;
+            }
+        }
+
+        footer article,
+        footer svg {
+            display: none;
+            opacity: 0;
+            visibility: hidden;
+        }
+    }
+}
